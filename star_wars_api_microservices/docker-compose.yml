@@ -6,8 +6,8 @@ services:
     restart: always
     build: ./characters
     ports:
-      # - ":3001" #? local test
-      - "3001:3001" #? vm deploy
+     
+      - "3001:3001" 
 
   films:
     container_name: films_
@@ -41,5 +41,3 @@ services:
       - films
       - planets
 
-# docker-compose build
-# docker-compose up
