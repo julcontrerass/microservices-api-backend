@@ -1,12 +1,13 @@
-const { Router } = require ("express")
-const controllers = require('../controllers')
+const { Router } = require("express");
+const controllers = require("../controllers");
+const { filmsValidationMdlw } = require("../middlewares/filmsValidationBody");
 
-const router = Router()
+const router = Router();
 
+router.get("/", controllers.getAll);
+router.get("/:id", controllers.getOne);
+router.post("/", filmsValidationMdlw, controllers.create);
+router.put("/:id", filmsValidationMdlw, controllers.update);
+router.delete("/:id", controllers.remove);
 
-router.get('/', controllers.getFilms)
-router.post('/', controllers.createFilm) 
-
-module.exports = router
-
-
+module.exports = router;

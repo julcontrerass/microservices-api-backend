@@ -1,0 +1,45 @@
+version: '3'
+
+services:
+  characters:
+    container_name: characters_
+    restart: always
+    build: ./characters
+    ports:
+      # - ":3001" #? local test
+      - "3001:3001" #? vm deploy
+
+  films:
+    container_name: films_
+    restart: always
+    build: ./films
+    ports:
+      - "3002:3002"
+
+  planets:
+    container_name: planets_
+    restart: always
+    build: ./planets
+    ports:
+      - "3003:3003"
+
+  database:
+    container_name: database_
+    restart: always
+    build: ./database
+    ports:
+      - "8004:8004"
+
+  gateway:
+    container_name: gateway_
+    restart: always
+    build: ./gateway
+    ports:
+      - "3000:3000"
+    depends_on:
+      - characters
+      - films
+      - planets
+
+# docker-compose build
+# docker-compose up

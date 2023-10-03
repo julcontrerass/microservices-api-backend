@@ -1,7 +1,6 @@
-const Server = require("./src/server");
+const server = require("./src/server");
+const port = 3002;
 
-const PORT = 8002
-
-Server.listen(PORT,()=>{
-    console.log(`Server is running on port ${PORT}`);
-})
+server.listen(port, () => {
+  console.log(`Server listening at ${port} :: Films Microservice`);
+});

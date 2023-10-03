@@ -1,11 +1,25 @@
 const express = require("express");
 const morgan = require("morgan");
+const router = require("./routes/index.js");
 
-const Server = express();
+const server = express();
 
-Server.use(morgan("dev"));
-Server.use(express.json());
+server.use(morgan("dev"));
+server.use(express.json());
 
-Server.use(require("./routes"))
+server.use("/planets", router);
 
-module.exports = Server;
+server.use("*", (req, res) => {
+  res.status(404).json({
+    error: "Not found",
+  });
+});
+
+server.use((err, req, res, next) => {
+  res.status(err.statusCode || 500).json({
+    error: true,
+    message: err.message,
+  });
+});
+
+module.exports = server;

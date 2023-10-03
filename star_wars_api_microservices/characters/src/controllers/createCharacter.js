@@ -1,3 +1,7 @@
-module.exports = (req,res) =>{
-    res.status(200).send("Creando perdonaje")
+const data = require("../data");
+const { res_handler } = require("../utils");
+
+module.exports = async (req, res) => {
+  const character = await data.create(req.body);
+  res_handler(res, 201, character);
 };

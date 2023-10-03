@@ -1,7 +1,7 @@
-const Character = require("../data")
+const data = require("../data");
+const { res_handler } = require("../utils");
 
-
-module.exports = async (req,res) => {
-    const characters = await Character.list();
-    res.status(200).json(characters);
+module.exports = async (req, res) => {
+  const characters = await data.list();
+  res_handler(res, 200, characters);
 };
